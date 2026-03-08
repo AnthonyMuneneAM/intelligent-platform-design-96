@@ -84,13 +84,12 @@
   background-size: 24px 24px;
 }
 
-/* Hero image strip animation */
-@keyframes strip-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* Floating card animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
 
-.animate-strip {
-  animation: strip-scroll 30s linear infinite;
-  width: max-content;
+.floating-card {
+  animation: float 4s ease-in-out infinite;
 }
