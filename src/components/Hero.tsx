@@ -25,20 +25,54 @@ const collageImages = [
   { src: heroStrip3, className: "w-26 h-34 -rotate-8 top-[55%] right-[0%]" },
 ];
 
+const DiamondIcon = () => (
+  <svg
+    viewBox="0 0 40 40"
+    className="inline-block w-[0.7em] h-[0.7em] mx-1 align-middle"
+    fill="none"
+  >
+    <defs>
+      <linearGradient id="diamond-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="hsl(270, 80%, 75%)" />
+        <stop offset="100%" stopColor="hsl(220, 80%, 65%)" />
+      </linearGradient>
+    </defs>
+    <rect
+      x="20"
+      y="2"
+      width="25"
+      height="25"
+      rx="4"
+      transform="rotate(45 20 20)"
+      fill="url(#diamond-grad)"
+    />
+  </svg>
+);
+
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Subtle glow */}
-      <div className="hero-glow absolute inset-0 pointer-events-none opacity-40" />
-
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-foreground">
       {/* Headline */}
       <div className="relative z-10 text-center px-6 pt-28 pb-8">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
-          Hey, I'm Anthony
-          <br />
-          Munene. Based in
-          <br />
-          Nairobi
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter text-primary-foreground">
+          <span className="block">
+            Hey, I'm{" "}
+            <span className="relative inline-block">
+              <span className="absolute inset-0 bg-accent rounded-lg -skew-x-2 scale-x-105 scale-y-110" />
+              <span className="relative text-foreground">Anthony</span>
+            </span>
+          </span>
+          <span className="block mt-2">
+            <span className="relative inline-block">
+              <span className="absolute inset-0 bg-highlight rounded-lg skew-x-1 scale-x-105 scale-y-110" />
+              <span className="relative text-foreground">Munene.</span>
+            </span>
+            {" "}Based in
+          </span>
+          <span className="block mt-2">
+            <DiamondIcon />
+            {" "}Nairobi
+          </span>
         </h1>
       </div>
 
@@ -48,7 +82,7 @@ const Hero = () => {
           {collageImages.map((img, i) => (
             <div
               key={i}
-              className={`absolute rounded-2xl overflow-hidden shadow-lg shadow-foreground/10 ${img.className}`}
+              className={`absolute rounded-2xl overflow-hidden shadow-lg shadow-background/20 ${img.className}`}
             >
               <img
                 src={img.src}
@@ -63,7 +97,7 @@ const Hero = () => {
           <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
             <a
               href="#work"
-              className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
+              className="inline-flex items-center gap-2 bg-primary-foreground text-foreground text-sm font-medium px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
             >
               View All Works
               <ArrowDown size={14} />
