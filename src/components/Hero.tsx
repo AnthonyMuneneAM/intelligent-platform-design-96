@@ -1,4 +1,4 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Diamond, Star } from "lucide-react";
 import heroStrip1 from "@/assets/hero-strip-1.jpg";
 import heroStrip2 from "@/assets/hero-strip-2.jpg";
 import heroStrip3 from "@/assets/hero-strip-3.jpg";
@@ -10,19 +10,9 @@ import projectTMaaS from "@/assets/project-tmaas.jpg";
 import projectDFSA from "@/assets/project-dfsa.jpg";
 import projectTurnaxis from "@/assets/project-turnaxis.jpg";
 
-const collageImages = [
-  { src: projectDQ, className: "w-32 h-40 -rotate-6 top-[5%] left-[8%]" },
-  { src: heroStrip1, className: "w-28 h-36 rotate-3 top-[0%] left-[30%]" },
-  { src: heroStrip3, className: "w-36 h-44 -rotate-3 top-[-2%] right-[28%]" },
-  { src: projectTMaaS, className: "w-30 h-38 rotate-6 top-[5%] right-[6%]" },
-  { src: heroStrip2, className: "w-28 h-36 rotate-12 top-[35%] left-[3%]" },
-  { src: projectDFSA, className: "w-34 h-42 -rotate-6 top-[30%] left-[22%]" },
-  { src: heroStrip5, className: "w-32 h-40 rotate-3 top-[28%] right-[20%]" },
-  { src: projectTurnaxis, className: "w-28 h-36 -rotate-12 top-[32%] right-[2%]" },
-  { src: heroStrip4, className: "w-30 h-38 rotate-6 top-[60%] left-[12%]" },
-  { src: heroStrip6, className: "w-32 h-40 -rotate-3 top-[58%] left-[38%]" },
-  { src: heroStrip1, className: "w-28 h-36 rotate-8 top-[62%] right-[15%]" },
-  { src: heroStrip3, className: "w-26 h-34 -rotate-8 top-[55%] right-[0%]" },
+const stripImages = [
+  heroStrip1, heroStrip2, heroStrip3, heroStrip4, heroStrip5, heroStrip6,
+  projectDQ, projectTMaaS, projectDFSA, projectTurnaxis,
 ];
 
 const Hero = () => {
@@ -32,44 +22,54 @@ const Hero = () => {
       <div className="hero-glow absolute inset-0 pointer-events-none opacity-40" />
 
       {/* Headline */}
-      <div className="relative z-10 text-center px-6 pt-28 pb-8">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
-          Hey, I'm Anthony
+      <div className="relative z-10 text-center px-6 pt-28 pb-12">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.95] tracking-tighter">
+          <span className="inline-flex items-center gap-2 sm:gap-4">
+            Hey, I'm
+            <span className="inline-block bg-accent text-accent-foreground px-3 sm:px-5 py-1 rounded-xl -rotate-1">
+              Anthony
+            </span>
+          </span>
           <br />
-          Munene. Based in
+          <span className="inline-flex items-center gap-2 sm:gap-4">
+            <Diamond className="w-8 h-8 sm:w-12 sm:h-12 text-highlight shrink-0 animate-spin" style={{ animationDuration: '8s' }} />
+            Munene.
+            <span className="inline-block bg-highlight text-highlight-foreground px-3 sm:px-5 py-1 rounded-xl rotate-1">
+              Based
+            </span>
+            in
+          </span>
           <br />
-          Nairobi
+          <span className="inline-flex items-center gap-2 sm:gap-4">
+            <Star className="w-7 h-7 sm:w-10 sm:h-10 text-accent shrink-0" fill="currentColor" />
+            Nairobi
+          </span>
         </h1>
       </div>
 
-      {/* Collage of images */}
-      <div className="relative z-10 flex-1 min-h-[50vh] mx-auto w-full max-w-3xl">
-        <div className="relative w-full h-full">
-          {collageImages.map((img, i) => (
+      {/* Scrolling image strip */}
+      <div className="relative z-10 mt-auto overflow-hidden py-6">
+        <div className="animate-strip flex gap-4">
+          {[...stripImages, ...stripImages].map((src, i) => (
             <div
               key={i}
-              className={`absolute rounded-2xl overflow-hidden shadow-lg shadow-foreground/10 ${img.className}`}
+              className="w-48 h-32 sm:w-64 sm:h-40 rounded-2xl overflow-hidden shadow-lg shadow-foreground/10 shrink-0"
             >
-              <img
-                src={img.src}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+              <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
             </div>
           ))}
-
-          {/* View All Works button centered in collage */}
-          <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-            <a
-              href="#work"
-              className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
-            >
-              View All Works
-              <ArrowDown size={14} />
-            </a>
-          </div>
         </div>
+      </div>
+
+      {/* View All Works button */}
+      <div className="relative z-10 text-center py-8">
+        <a
+          href="#work"
+          className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
+        >
+          View All Works
+          <ArrowDown size={14} />
+        </a>
       </div>
     </section>
   );
