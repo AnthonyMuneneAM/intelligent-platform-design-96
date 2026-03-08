@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import heroStrip1 from "@/assets/hero-strip-1.jpg";
 import heroStrip2 from "@/assets/hero-strip-2.jpg";
 import heroStrip3 from "@/assets/hero-strip-3.jpg";
@@ -9,84 +10,66 @@ import projectTMaaS from "@/assets/project-tmaas.jpg";
 import projectDFSA from "@/assets/project-dfsa.jpg";
 import projectTurnaxis from "@/assets/project-turnaxis.jpg";
 
-const stripImages = [
-  heroStrip1, projectDQ, heroStrip2, heroStrip3, heroStrip5,
-  projectTMaaS, heroStrip4, projectDFSA, heroStrip6, projectTurnaxis,
+const collageImages = [
+  { src: projectDQ, className: "w-32 h-40 -rotate-6 top-[5%] left-[8%]" },
+  { src: heroStrip1, className: "w-28 h-36 rotate-3 top-[0%] left-[30%]" },
+  { src: heroStrip3, className: "w-36 h-44 -rotate-3 top-[-2%] right-[28%]" },
+  { src: projectTMaaS, className: "w-30 h-38 rotate-6 top-[5%] right-[6%]" },
+  { src: heroStrip2, className: "w-28 h-36 rotate-12 top-[35%] left-[3%]" },
+  { src: projectDFSA, className: "w-34 h-42 -rotate-6 top-[30%] left-[22%]" },
+  { src: heroStrip5, className: "w-32 h-40 rotate-3 top-[28%] right-[20%]" },
+  { src: projectTurnaxis, className: "w-28 h-36 -rotate-12 top-[32%] right-[2%]" },
+  { src: heroStrip4, className: "w-30 h-38 rotate-6 top-[60%] left-[12%]" },
+  { src: heroStrip6, className: "w-32 h-40 -rotate-3 top-[58%] left-[38%]" },
+  { src: heroStrip1, className: "w-28 h-36 rotate-8 top-[62%] right-[15%]" },
+  { src: heroStrip3, className: "w-26 h-34 -rotate-8 top-[55%] right-[0%]" },
 ];
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Subtle glow */}
-      <div className="hero-glow absolute inset-0 pointer-events-none opacity-50" />
+      <div className="hero-glow absolute inset-0 pointer-events-none opacity-40" />
 
-      {/* Top content */}
-      <div className="relative z-10 text-center px-6 pt-32 pb-16 flex-1 flex flex-col items-center justify-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 mb-8 text-sm text-muted-foreground">
-          <span className="w-2 h-2 rounded-full bg-accent" />
-          Product Designer & Product Owner
-        </div>
-
-        {/* Large typographic name */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] font-bold leading-[0.9] tracking-tighter mb-6">
-          Anthony
+      {/* Headline */}
+      <div className="relative z-10 text-center px-6 pt-28 pb-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tighter">
+          Hey, I'm Anthony
           <br />
-          Munene
+          Munene. Based in
+          <br />
+          Dubai
         </h1>
-
-        {/* Subtitle */}
-        <p className="text-base md:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
-          Designing intelligent digital platforms that transform how organisations operate.
-        </p>
-
-        {/* Side labels */}
-        <div className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 -rotate-90 text-xs text-muted-foreground tracking-widest uppercase">
-          ( Dubai, UAE )
-        </div>
-        <div className="hidden md:flex absolute right-6 bottom-[40%] text-xs text-muted-foreground gap-3">
-          <span>BE</span>
-          <span>/</span>
-          <span>DR</span>
-          <span>/</span>
-          <span>X</span>
-        </div>
       </div>
 
-      {/* Image strip */}
-      <div className="relative z-10 w-full overflow-hidden pb-0">
-        <div className="flex gap-3 px-4 animate-strip">
-          {stripImages.map((img, i) => (
+      {/* Collage of images */}
+      <div className="relative z-10 flex-1 min-h-[50vh] mx-auto w-full max-w-3xl">
+        <div className="relative w-full h-full">
+          {collageImages.map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-28 sm:w-36 md:w-44 h-48 sm:h-56 md:h-72 rounded-[2rem] overflow-hidden"
+              className={`absolute rounded-2xl overflow-hidden shadow-lg shadow-foreground/10 ${img.className}`}
             >
               <img
-                src={img}
+                src={img.src}
                 alt=""
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
           ))}
-          {/* Duplicate for seamless scroll illusion */}
-          {stripImages.map((img, i) => (
-            <div
-              key={`dup-${i}`}
-              className="flex-shrink-0 w-28 sm:w-36 md:w-44 h-48 sm:h-56 md:h-72 rounded-[2rem] overflow-hidden"
+
+          {/* View All Works button centered in collage */}
+          <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <a
+              href="#work"
+              className="inline-flex items-center gap-2 bg-foreground text-background text-sm font-medium px-6 py-3 rounded-full hover:opacity-90 transition-opacity shadow-xl"
             >
-              <img
-                src={img}
-                alt=""
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          ))}
+              View All Works
+              <ArrowDown size={14} />
+            </a>
+          </div>
         </div>
-        {/* Fade edges */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
