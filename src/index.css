@@ -83,3 +83,14 @@
   background-image: radial-gradient(circle, hsl(0 0% 80%) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* Hero image strip animation */
+@keyframes strip-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-strip {
+  animation: strip-scroll 30s linear infinite;
+  width: max-content;
+}
