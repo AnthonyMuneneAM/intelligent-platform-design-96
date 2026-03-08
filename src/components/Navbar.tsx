@@ -1,21 +1,55 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import avatarImg from "@/assets/avatar-anthony.jpg";
+
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-5">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <span className="text-base font-semibold tracking-tight">
-          Anthony Munene
-        </span>
-        <div className="hidden sm:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#work" className="hover:text-foreground transition-colors">Work</a>
-          <a href="#" className="hover:text-foreground transition-colors">About</a>
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+      <div className="bg-background/80 backdrop-blur-xl border border-border rounded-full px-3 py-2 flex items-center gap-3 shadow-lg shadow-foreground/5">
+        {/* Avatar + Name */}
+        <div className="flex items-center gap-3">
+          <img
+            src={avatarImg}
+            alt="Anthony Munene"
+            className="w-9 h-9 rounded-full object-cover ring-2 ring-border"
+          />
+          <span className="text-sm font-semibold tracking-tight pr-4">
+            Anthony Munene
+          </span>
         </div>
-        <a
-          href="mailto:hello@anthonymunene.com"
-          className="bg-primary text-primary-foreground text-sm px-5 py-2 rounded-full font-medium hover:opacity-90 transition-opacity"
+
+        {/* Menu button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="w-9 h-9 rounded-full bg-foreground text-background flex items-center justify-center hover:opacity-80 transition-opacity"
+          aria-label="Toggle menu"
         >
-          Contact
-        </a>
+          {menuOpen ? <X size={16} /> : <Menu size={16} />}
+        </button>
       </div>
+
+      {/* Dropdown menu */}
+      {menuOpen && (
+        <div className="absolute top-full mt-2 right-0 bg-background/90 backdrop-blur-xl border border-border rounded-2xl px-6 py-4 shadow-xl min-w-[180px]">
+          <div className="flex flex-col gap-3 text-sm">
+            <a href="#work" onClick={() => setMenuOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors">
+              Work
+            </a>
+            <a href="#perspective" onClick={() => setMenuOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors">
+              Perspective
+            </a>
+            <a
+              href="mailto:hello@anthonymunene.com"
+              onClick={() => setMenuOpen(false)}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
