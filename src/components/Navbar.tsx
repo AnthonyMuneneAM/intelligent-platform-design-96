@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import avatarImg from "@/assets/avatar-anthony.jpg";
+import { Menu, X, Sparkles } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,16 +7,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <div className="bg-background/80 backdrop-blur-xl border border-border rounded-full px-3 py-2 flex items-center gap-3 shadow-lg shadow-foreground/5">
-        {/* Avatar + Name */}
-        <div className="flex items-center gap-3">
-          <img
-            src={avatarImg}
-            alt="Anthony Munene"
-            className="w-9 h-9 rounded-full object-cover ring-2 ring-border"
-          />
-          <span className="text-sm font-semibold tracking-tight pr-4">
-            Anthony Munene
+        {/* Logo: Name + AI icon */}
+        <div className="flex items-center gap-1.5 pl-2 pr-4">
+          <span className="text-sm font-bold tracking-tight">
+            anthony munene
           </span>
+          <Sparkles size={14} className="text-foreground fill-foreground" />
         </div>
 
         {/* Menu button */}
