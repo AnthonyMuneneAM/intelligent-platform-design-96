@@ -49,15 +49,25 @@ const Hero = () => {
 
       {/* Scrolling image strip */}
       <div className="relative z-10 mt-auto overflow-hidden py-6">
-        <div className="animate-strip flex gap-4">
-          {[...stripImages, ...stripImages].map((src, i) => (
-            <div
-              key={i}
-              className="w-48 h-32 sm:w-64 sm:h-40 rounded-2xl overflow-hidden shadow-lg shadow-foreground/10 shrink-0"
-            >
-              <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
-            </div>
-          ))}
+        <div className="animate-strip flex items-end gap-3 sm:gap-4">
+          {[...stripImages, ...stripImages].map((src, i) => {
+            const shapes = [
+              "w-36 h-48 sm:w-48 sm:h-64 rounded-t-full rounded-b-2xl",
+              "w-40 h-44 sm:w-52 sm:h-56 rounded-[2rem]",
+              "w-32 h-52 sm:w-44 sm:h-68 rounded-t-full rounded-b-2xl",
+              "w-44 h-40 sm:w-56 sm:h-52 rounded-[2rem]",
+              "w-36 h-56 sm:w-48 sm:h-72 rounded-t-full rounded-b-2xl",
+            ];
+            const shape = shapes[i % shapes.length];
+            return (
+              <div
+                key={i}
+                className={`${shape} overflow-hidden shadow-lg shadow-foreground/5 shrink-0`}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
+              </div>
+            );
+          })}
         </div>
       </div>
 
