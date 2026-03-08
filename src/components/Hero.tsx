@@ -38,7 +38,7 @@ const Hero = () => {
           <br />
           Munene. Based in
           <br />
-          Dubai
+          Nairobi
         </h1>
       </div>
 
